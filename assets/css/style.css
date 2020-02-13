@@ -1,0 +1,19 @@
+.draggable {
+    cursor: pointer;
+}
+
+.dragging {
+    cursor: move !important;
+}
+
+.draggable:hover {
+    opacity: 0.5;
+}
+
+.visible {
+    display: block !important;
+}
+
+.invisible {
+    display: none !important;
+}
