@@ -1,21 +1,44 @@
 body {
-    background-color: #fdfdfc;
+  background-color: #f9f4e1 !important;
 }
 
-#circle {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background-color: #000000;
-    border-radius: 50%;
+.outer-circle {
+  background-color: black;
+  width: 650px; /* You can define it by % also */
+  height: 650px; /* You can define it by % also*/
+  position: relative;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+.mid-circle {
+  background-color: #a8a8a8;
+  top: 0.5%;
+  left: 0.5%; /* of the container */
+  width: 99%; /* of the outer-1 */
+  height: 99%; /* of the outer-1 */
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+.inner-circle {
+  background-color: #c3c3c3;
+  top: 5%;
+  left: 5%; /* of the container */
+  width: 90%; /* of the inner-1 */
+  height: 90%; /* of the inner-1 */
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+img {
+    cursor: pointer;
 }
 
-#small-circle {
-    margin-top: 25%;
-    margin-left: 25%;
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background-color: #e5e5e5;
-    border-radius: 50%;
+.top-items {
+    padding-left: 10rem;
+    padding-top: 3rem;
+}
+
+.bottom-item {
+    padding-left: 5rem;
 }
