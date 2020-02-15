@@ -4,8 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const ikkeMat = document.querySelectorAll('.ikke-mat');
 
     for(const matAvfall of mat) {
+        // Adding the attribute of the items can't be draggable
+        matAvfall.setAttribute('draggable', 'false');
+
         matAvfall.addEventListener('click', (e) => {
             e.preventDefault();
+
+            // Added success sound if they click on the correct item
+            const audio = new Audio('./assets/mp3/success-sound.mp3');
+            audio.play();
+
             e.target.style.display = 'none';
 
             // This will return true if there is no more display is none
@@ -16,9 +24,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     for(const ikkeMatAvfall of ikkeMat) {
+        // Adding the attribute of the items can't be draggable
+        ikkeMatAvfall.setAttribute('draggable', 'false');
+
         ikkeMatAvfall.addEventListener('click', (e) => {
             e.preventDefault();
-            alert('FEEEEIL!!!!')
+
+            // Added error sound if they click on a wrong item
+            const audio = new Audio('./assets/mp3/error-sound.mp3');
+            audio.play();
+
+            // Creating an empty array
+            const imgArr = [];
+            
+            // Pushing the URL path of the wrong image
+            imgArr.push(e.target.src);
+            
+            // Overwriting the old image src to the x-mark image
+            e.target.src = './assets/img/spill2/x-mark.png';
+            
+            // We want to loop through the array of the original URL path of the image
+            for(const srcPath of imgArr) {
+                // 1. Keep the original slash
+                // 2. splitting everything which has /
+                // 3. We are slicing away e.g. http://127.0.0.1:5500
+                // 4. We want to add everything back again that has /
+                //const imgPath = '/' + srcPath.split('/').slice(5).join('/');
+                const path = new URL(srcPath)
+                console.log()
+                
+                // After the image has displayed x-mark, we want to get the original src Path of the image 
+                // from the array we did push at the beginning
+                setInterval(() => e.target.src = `.${path.pathname}`, 1250);
+            }
         });
     }
 
