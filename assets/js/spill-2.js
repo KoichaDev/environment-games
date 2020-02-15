@@ -7,7 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
         matAvfall.addEventListener('click', (e) => {
             e.preventDefault();
             e.target.style.display = 'none';
-            alert('RIKTIG!!!')
+
+            // This will return true if there is no more display is none
+            if(Array.prototype.every.call(mat, ({ style }) => style.display === "none")) {
+                alert('Woohooo! Du er så flink!')
+            }
         })
     }
 
@@ -15,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ikkeMatAvfall.addEventListener('click', (e) => {
             e.preventDefault();
             alert('FEEEEIL!!!!')
-            
         });
     }
 
