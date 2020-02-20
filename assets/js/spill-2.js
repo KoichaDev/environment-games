@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Added success sound if they click on the correct item
             const audio = new Audio('./assets/mp3/success-sound.mp3');
             audio.play();
-
+            
             e.target.style.display = 'none';
 
             // This will return true if there is no more display is none
@@ -45,17 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // We want to loop through the array of the original URL path of the image
             for(const srcPath of imgArr) {
-                // 1. Keep the original slash
-                // 2. splitting everything which has /
-                // 3. We are slicing away e.g. http://127.0.0.1:5500
-                // 4. We want to add everything back again that has /
-                //const imgPath = '/' + srcPath.split('/').slice(5).join('/');
                 const path = new URL(srcPath)
-                console.log()
+               console.log(imgArr)
                 
+               console.log(e.target)
                 // After the image has displayed x-mark, we want to get the original src Path of the image 
                 // from the array we did push at the beginning
-                setInterval(() => e.target.src = `.${path.pathname}`, 1250);
+                setTimeout(() => e.target.src = `${path.pathname}`, 1250);
             }
         });
     }
