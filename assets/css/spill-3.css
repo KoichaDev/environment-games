@@ -1,0 +1,18 @@
+body {
+    background-color: #f9f4e1 !important;   
+}
+
+.images {
+    position: relative;
+    width: 50rem;
+    right: 1.8%;
+}
+
+.img-seal {
+    width: 70rem;
+}
+
+.item-obj {
+    position:absolute;
+    top: 13%;
+}
