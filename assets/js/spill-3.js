@@ -13,6 +13,30 @@ document.addEventListener("DOMContentLoaded", e => {
     "./assets/img/spill-3/soda-box.png"
   ];
 
+  const foodElements = foodImg.map(image => {
+    const element = document.createElement("img");
+    element.className = "food-item";
+    element.src = image;
+    return element;
+  });
+
+  const trashElements = trashImg.map(image => {
+    const element = document.createElement("img");
+    element.className = "trash-item";
+    element.src = image;
+    return element;
+  });
+
+  const mixObjImg = [...foodElements, ...trashElements];
+  mixObjImg.sort(() => Math.random() - 0.5);
+
+  // Object Items that is animated moving on the right
+  mixObjImg.map(img => {
+    const itemObj = document.querySelector(".item-obj");
+    itemObj.appendChild(img);
+  });
+
+  /* // setInterval for the seal animation
   setInterval(() => {
     const img = document.querySelector(".images");
     const divImg = document.createElement("img");
@@ -33,26 +57,9 @@ document.addEventListener("DOMContentLoaded", e => {
       document.querySelector(".img-seal").remove();
     }
   }, 900);
-
-  const foodElements = foodImg.map(image => {
-    const element = document.createElement("img");
-    element.className = "food-item";
-    element.src = image;
-    return element;
-  });
-
-  const trashElements = trashImg.map(image => {
-    const element = document.createElement("img");
-    element.className = "trash-item";
-    element.src = image;
-    return element;
-  });
-
-  const mixObjImg = [...foodElements, ...trashElements];
-  mixObjImg.sort(() => Math.random() - 0.5);
-
-  mixObjImg.map(img => {
-    const itemObj = document.querySelector(".item-obj");
-    itemObj.appendChild(img);
-  });
+ */
+  const seal = document.querySelector(".img-seal");
+  const foodItem = document.querySelectorAll(".food-item");
+  const trashItem = document.querySelectorAll(".trash-item");
+  console.log(seal);
 });

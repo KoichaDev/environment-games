@@ -4,7 +4,8 @@ body {
 
 .images {
   position: relative;
-  width: 50rem;
+  width: 70rem;
+  height: auto;
   right: 1.8%;
   top: 1%;
 }
@@ -14,11 +15,11 @@ body {
 }
 
 .food-item {
-    padding-left: 2rem;
+  padding-left: 2rem;
 }
 
 .trash-item {
-    padding-left: 3rem;
+  padding-left: 3rem;
 }
 
 .item-obj {
