@@ -15,8 +15,16 @@ body {
   padding-left: 2rem;
 }
 
+.food-item:hover {
+  cursor: pointer;
+}
+
 .trash-item {
   padding-left: 3rem;
+}
+
+.trash-item:hover {
+  cursor: pointer;
 }
 
 .item-obj {

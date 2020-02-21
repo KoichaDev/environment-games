@@ -11,10 +11,10 @@
 
 @keyframes wokka {
   0% {
-    content: url('/assets/img/spill-3/sel-open.png')
+    content: url('/assets/img/spill-3/seal-open.png')
   }
 
   50% {
-    content: url('/assets/img/spill-3/sel-lukket.png')
+    content: url('/assets/img/spill-3/seal-lukket.png')
   }
 }

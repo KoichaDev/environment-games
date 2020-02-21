@@ -39,4 +39,16 @@ document.addEventListener('DOMContentLoaded', e => {
   const seal = document.querySelector('.img-seal');
   const foodItem = document.querySelectorAll('.food-item');
   const trashItem = document.querySelectorAll('.trash-item');
+
+  for (const trashElements of trashItem) {
+    trashElements.addEventListener('click', e => {
+      e.target.style.display = 'none';
+    });
+  }
+
+  for (const foodElements of foodItem) {
+    foodElements.addEventListener('click', e => {
+      // Add heart that will move animation up
+    });
+  }
 });
