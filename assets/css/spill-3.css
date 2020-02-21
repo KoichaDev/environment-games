@@ -1,18 +1,34 @@
 body {
-    background-color: #f9f4e1 !important;   
+  background-color: #f9f4e1 !important;
 }
 
 .images {
-    position: relative;
-    width: 50rem;
-    right: 1.8%;
+  position: relative;
+  width: 50rem;
+  right: 1.8%;
+  top: 1%;
 }
 
 .img-seal {
-    width: 70rem;
+  width: 70rem;
 }
 
 .item-obj {
-    position:absolute;
-    top: 13%;
+  position: absolute;
+  top: 14%;
+}
+
+/* CSS Animation */
+.item-obj {
+  animation: slide-slow 12s;
+  margin-top: 0%;
+  animation-iteration-count: infinite;
+}
+@keyframes slide-slow {
+  from {
+    margin-left: 0%;
+  }
+  to {
+    margin-left: 72%;
+  }
 }
