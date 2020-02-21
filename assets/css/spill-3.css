@@ -4,14 +4,11 @@ body {
 
 .images {
   position: relative;
-  width: 70rem;
+  width: 32rem;
   height: auto;
   right: 1.8%;
-  top: 1%;
-}
-
-.img-seal {
-  width: 70rem;
+  top: 39%;
+  left: 40%;
 }
 
 .food-item {
@@ -27,7 +24,7 @@ body {
   margin: auto;
   margin-top: 20px;
   margin-left: 10px;
-  top: 14%;
+  top: 50%;
 }
 
 /* CSS Animation */
@@ -36,10 +33,12 @@ body {
   margin-top: 0%;
   animation-iteration-count: infinite;
 }
+
 @keyframes slide-slow {
   from {
     margin-left: 0%;
   }
+
   to {
     margin-left: 72%;
   }

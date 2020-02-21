@@ -2,12 +2,6 @@
  ***** Seal Animation *****
  **************************/
 
-section {
-  position: relative;
-}
-section img {
-  position: absolute;
-}
 .images {
   animation-name: wokka;
   animation-duration: 0.5s;
@@ -16,6 +10,11 @@ section img {
 }
 
 @keyframes wokka {
-  0% {content: url('/assets/img/spill-3/seal-open.png')}
-  50% {content: url('/assets/img/spill-3/seal-close.png')}
+  0% {
+    content: url('/assets/img/spill-3/sel-open.png')
+  }
+
+  50% {
+    content: url('/assets/img/spill-3/sel-lukket.png')
+  }
 }
