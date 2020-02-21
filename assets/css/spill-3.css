@@ -13,8 +13,19 @@ body {
   width: 70rem;
 }
 
+.food-item {
+    padding-left: 2rem;
+}
+
+.trash-item {
+    padding-left: 3rem;
+}
+
 .item-obj {
   position: absolute;
+  margin: auto;
+  margin-top: 20px;
+  margin-left: 10px;
   top: 14%;
 }
 

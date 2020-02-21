@@ -1,23 +1,3 @@
-const shuffleArr = array => {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-};
-
 document.addEventListener("DOMContentLoaded", e => {
   const sealImage = [
     "./assets/img/spill-3/seal-open.png",
@@ -33,32 +13,17 @@ document.addEventListener("DOMContentLoaded", e => {
     "./assets/img/spill-3/soda-box.png"
   ];
 
-  // Creating empty arrays for the food and tash object
-  const emptyFoodArr = [];
-  const emptyTrashArr = [];
-
   setInterval(() => {
-    // Getting the element for the parent class
     const img = document.querySelector(".images");
-
-    // Creating img element for the seal
     const divImg = document.createElement("img");
-
-    // Adding class name for the img element for the seal
     divImg.classList.add("img-seal");
-
-    // Setting the attribute of the img element
     divImg.setAttribute("src", sealImage[0]);
-
-    // Appending from the parent to child element
     img.appendChild(divImg);
 
     const replace = setTimeout(() => {
-      // Replacing the old img to new Img
       document.querySelector(".img-seal").src = sealImage[1];
     }, 1500);
 
-    // If setTimeout is true then we want to switch another picture
     if (replace) {
       document.querySelector(".img-seal").src = sealImage[0];
     }
@@ -69,50 +34,25 @@ document.addEventListener("DOMContentLoaded", e => {
     }
   }, 900);
 
-  foodImg.map(foodObj => {
-    const itemObj = document.querySelector(".item-obj");
-    // Creating img element for the item object
-    const foodEl = document.createElement("img");
-
-    // Adding class name for the img element for the item object
-    foodEl.classList.add("food-item");
-
-    // Adding the attribute and src path for the image
-    foodEl.setAttribute("src", foodObj);
-
-    // Pushing the foodObj from the empty Array
-    emptyFoodArr.push(foodObj);
+  const foodElements = foodImg.map(image => {
+    const element = document.createElement("img");
+    element.className = "food-item";
+    element.src = image;
+    return element;
   });
 
-  trashImg.map(trashObj => {
-    const itemObj = document.querySelector(".item-obj");
-    // Creating img element for the item object
-    const trashEl = document.createElement("img");
-
-    // Adding class name for the img element for the item object
-    trashEl.classList.add("trash-item");
-
-    // Adding the attribute and src path for the image
-    trashEl.setAttribute("src", trashObj);
-
-    // Pushing the trashObj from the empty Array
-    emptyTrashArr.push(trashObj);
+  const trashElements = trashImg.map(image => {
+    const element = document.createElement("img");
+    element.className = "trash-item";
+    element.src = image;
+    return element;
   });
 
-  // Merging both from the empty array to the new one
-  const mixObjImg = [...emptyFoodArr, ...emptyTrashArr];
-  // We want to shuffling the array 
-  shuffleArr(mixObjImg)
+  const mixObjImg = [...foodElements, ...trashElements];
+  mixObjImg.sort(() => Math.random() - 0.5);
 
-  mixObjImg.map(mixObj => {
+  mixObjImg.map(img => {
     const itemObj = document.querySelector(".item-obj");
-    // Creating img element for the item object
-    const mixItemObj = document.createElement("img");
-
-    
-    mixItemObj.setAttribute("src", mixObj);
-    
-    // Appending from the parent to child element
-    itemObj.appendChild(mixItemObj);
+    itemObj.appendChild(img);
   });
 });
