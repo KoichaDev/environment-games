@@ -40,9 +40,11 @@ document.addEventListener('DOMContentLoaded', e => {
 
   const images = document.querySelector('.images');
   const hiddenWall = document.querySelector('.hidden-wall');
-  const sealEatClose = document.querySelector('.seal-open-close');
   const sealHappySad = document.querySelector('.seal-happy-sad');
+
+  const sealHappy = document.querySelector('.seal-happy');
   const sealSad = document.querySelector('.seal-sad');
+
   const itemObjects = document.querySelector('.item-obj');
 
   const foodItem = document.querySelectorAll('.food-item');
@@ -82,6 +84,20 @@ document.addEventListener('DOMContentLoaded', e => {
 
     trashElements.addEventListener('click', e => {
       e.target.style.display = 'none';
+
+      images.firstElementChild.classList.remove('seal-open-close');
+
+      sealHappy.src = './assets/img/spill-3/seal-glad.png';
+
+      itemObjects.style.animationPlayState = 'paused';
+
+      setTimeout(() => {
+        sealHappy.src = '';
+        itemObjects.style.animationPlayState = 'running';
+        // Remove the src of the img
+        sealSad.src = '';
+        images.firstElementChild.classList.add('seal-open-close');
+      }, 1000);
     });
   }
 
