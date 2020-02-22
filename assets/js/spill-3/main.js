@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', e => {
   const hiddenWall = document.querySelector('.hidden-wall');
   const sealEatClose = document.querySelector('.seal-open-close');
   const sealSad = document.querySelector('.seal-sad');
+  const itemObjects = document.querySelector('.item-obj');
 
   const foodItem = document.querySelectorAll('.food-item');
   const trashItem = document.querySelectorAll('.trash-item');
@@ -60,7 +61,13 @@ document.addEventListener('DOMContentLoaded', e => {
 
         if (displayNone) {
           sealSad.src = '/assets/img/spill-3/seal-trist.png';
+
+          itemObjects.style.animationPlayState = 'paused';
         }
+        setTimeout(
+          () => (itemObjects.style.animationPlayState = 'running'),
+          1000
+        );
       }
 
       if (blankImage) {
