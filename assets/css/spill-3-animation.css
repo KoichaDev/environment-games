@@ -37,3 +37,32 @@
     margin-left: 72%;
   }
 }
+
+/***********************************
+ ***** Trash Object Animation  *****
+ ***********************************/
+
+.trash-item-flying-up {
+  animation: mover 1s alternate;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(9220px);
+  }
+}
+
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-920px);
+  }
+}

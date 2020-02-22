@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', e => {
     }, 100);
 
     trashElements.addEventListener('click', e => {
-      e.target.style.display = 'none';
+      trashElements.classList.add('trash-item-flying-up');
+      setTimeout(() => (e.target.style.display = 'none'), 300);
 
       images.firstElementChild.classList.remove('seal-open-close');
 
