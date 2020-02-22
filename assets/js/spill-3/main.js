@@ -3,12 +3,33 @@ import { loopAddElement, sleep, isOverlapping } from './help-function.mjs';
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
     './assets/img/spill-3/blue-fish.png',
-    './assets/img/spill-3/fat-fish.png'
+    './assets/img/spill-3/fat-fish.png',
+    './assets/img/spill-3/eple.png',
+    './assets/img/spill-3/jordbær.png',
+    './assets/img/spill-3/squash.png',
+    './assets/img/spill-3/reke.png',
+    './assets/img/spill-3/salat.png',
+    './assets/img/spill-3/sharp-blue-fish.png',
+    './assets/img/spill-3/yellow-fish.png',
+    './assets/img/spill-3/ketchup.png',
+    './assets/img/spill-3/muggen-brød.png'
   ];
 
   const trashImg = [
     './assets/img/spill-3/bread-box.png',
-    './assets/img/spill-3/soda-box.png'
+    './assets/img/spill-3/soda-box.png',
+    './assets/img/spill-3/klokke.png',
+    './assets/img/spill-3/q-tips.png',
+    './assets/img/spill-3/tannbørste.png',
+    './assets/img/spill-3/skyr.png',
+    './assets/img/spill-3/brille.png',
+    './assets/img/spill-3/eple-flaske.png',
+    './assets/img/spill-3/kartong.png',
+    './assets/img/spill-3/krykke.png',
+    './assets/img/spill-3/tannbørste.png',
+    './assets/img/spill-3/tom-kartong.png',
+    './assets/img/spill-3/truse.png',
+    './assets/img/spill-3/sokker.png'
   ];
 
   const foodElements = foodImg.map(image => {
@@ -31,7 +52,7 @@ document.addEventListener('DOMContentLoaded', e => {
   (async () => {
     const itemObj = document.querySelector('.item-obj');
     for (let i = 0; i < mixObjImg.length; i++) {
-      await sleep(2000);
+      await sleep(1000);
       console.log(mixObjImg[i]);
 
       // Reversing the order of the item to "popping" on the screen

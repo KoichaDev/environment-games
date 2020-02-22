@@ -11,11 +11,11 @@
 
 @keyframes wokka {
   0% {
-    content: url('./assets/img/spill-3/seal-open.png');
+    content: url('/assets/img/spill-3/seal-open.png');
   }
 
   50% {
-    content: url('./assets/img/spill-3/seal-lukket.png');
+    content: url('/assets/img/spill-3/seal-lukket.png');
   }
 }
 
@@ -46,22 +46,12 @@
   animation-duration: 0.5s;
 }
 
-@-webkit-keyframes mover {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(9220px);
-  }
-}
-
 @keyframes mover {
   0% {
     transform: translateY(0);
   }
 
   100% {
-    transform: translateY(-920px);
+    transform: translateY(-40rem);
   }
 }
