@@ -1,4 +1,6 @@
-import { isOverlapping } from './help-function.mjs';
+import {
+  isOverlapping
+} from './help-function.mjs';
 
 document.addEventListener('DOMContentLoaded', e => {
   const sealImage = [
@@ -51,10 +53,6 @@ document.addEventListener('DOMContentLoaded', e => {
   const trashItem = document.querySelectorAll('.trash-item');
 
   for (const trashElements of trashItem) {
-    const blankImage = Array.prototype.every.call(
-      trashElements,
-      ({ style }) => style.display === 'none'
-    );
     // Checking if the element is overlapping all the time
     setInterval(() => {
       if (isOverlapping(trashElements, hiddenWall)) {
@@ -103,6 +101,16 @@ document.addEventListener('DOMContentLoaded', e => {
   }
 
   for (const foodElements of foodItem) {
+
+    // Checking if the element is overlapping all the time
+    setInterval(() => {
+      if (isOverlapping(foodElements, hiddenWall)) {
+        // remove the trash image objects
+        foodElements.style.display = 'none';
+        images.firstElementChild.classList.add('seal-open-close');
+      }
+    }, 100);
+
     foodElements.addEventListener('click', e => {
       // Add heart that will move animation up
     });
