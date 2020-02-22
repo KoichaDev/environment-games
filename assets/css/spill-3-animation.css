@@ -2,7 +2,7 @@
  ***** Seal Animation *****
  **************************/
 
-.images {
+.seal-open-close {
   animation-name: wokka;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
@@ -16,5 +16,24 @@
 
   50% {
     content: url('/assets/img/spill-3/seal-lukket.png')
+  }
+}
+
+/*********************************
+ ***** Item Object Animation *****
+ *********************************/
+.item-obj {
+  animation: slide-slow 12s;
+  margin-top: 0%;
+  animation-iteration-count: infinite;
+}
+
+@keyframes slide-slow {
+  from {
+    margin-left: 0%;
+  }
+
+  to {
+    margin-left: 72%;
   }
 }

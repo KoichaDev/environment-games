@@ -2,13 +2,46 @@ body {
   background-color: #f9f4e1 !important;
 }
 
+/**********************************************************
+****** Hidden wall in front of the mouth of the Seal ******
+******   Intention is to let the item hit the box    ******
+***********************************************************/
+.hidden-wall {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  margin: auto;
+  margin-top: 20px;
+  margin-left: 10px;
+  top: 33%;
+  left: 59%;
+}
+
 .images {
   position: relative;
   width: 32rem;
   height: auto;
   right: 1.8%;
-  top: 39%;
+  top: 41.5%;
   left: 40%;
+}
+
+.seal-open-close {
+  position: relative;
+  width: 32rem;
+  height: auto;
+  right: 1.8%;
+  top: 39%;
+  left: -5%;
+}
+
+.seal-sad {
+  position: relative;
+  width: 32rem;
+  height: auto;
+  right: 1.8%;
+  top: 39%;
+  left: -5%;
 }
 
 .food-item {
@@ -33,21 +66,4 @@ body {
   margin-top: 20px;
   margin-left: 10px;
   top: 50%;
-}
-
-/* CSS Animation */
-.item-obj {
-  animation: slide-slow 12s;
-  margin-top: 0%;
-  animation-iteration-count: infinite;
-}
-
-@keyframes slide-slow {
-  from {
-    margin-left: 0%;
-  }
-
-  to {
-    margin-left: 72%;
-  }
 }

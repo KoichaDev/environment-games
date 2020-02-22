@@ -1,3 +1,5 @@
+import { isOverlapping } from './help-function.mjs';
+
 document.addEventListener('DOMContentLoaded', e => {
   const sealImage = [
     './assets/img/spill-3/seal-open.png',
@@ -36,11 +38,36 @@ document.addEventListener('DOMContentLoaded', e => {
     itemObj.appendChild(img);
   });
 
-  const seal = document.querySelector('.img-seal');
+  const images = document.querySelector('.images');
+  const hiddenWall = document.querySelector('.hidden-wall');
+  const sealEatClose = document.querySelector('.seal-open-close');
+  const sealSad = document.querySelector('.seal-sad');
+
   const foodItem = document.querySelectorAll('.food-item');
   const trashItem = document.querySelectorAll('.trash-item');
 
   for (const trashElements of trashItem) {
+    const blankImage = Array.prototype.every.call(
+      trashElements,
+      ({ style }) => style.display === 'none'
+    );
+    // Checking if the element is overlapping all the time
+    setInterval(() => {
+      if (isOverlapping(trashElements, hiddenWall)) {
+        // remove the trash image objects
+        const displayNone = (trashElements.style.display = 'none');
+        images.firstElementChild.classList.remove('seal-open-close');
+
+        if (displayNone) {
+          sealSad.src = '/assets/img/spill-3/seal-trist.png';
+        }
+      }
+
+      if (blankImage) {
+        // This will return true if there is no more display is none
+      }
+    }, 100);
+
     trashElements.addEventListener('click', e => {
       e.target.style.display = 'none';
     });
