@@ -11,11 +11,11 @@
 
 @keyframes wokka {
   0% {
-    content: url('/assets/img/spill-3/seal-open.png')
+    content: url('/assets/img/spill-3/seal-open.png');
   }
 
   50% {
-    content: url('/assets/img/spill-3/seal-lukket.png')
+    content: url('/assets/img/spill-3/seal-lukket.png');
   }
 }
 
@@ -24,7 +24,6 @@
  *********************************/
 .item-obj {
   animation: slide-slow 12s;
-  margin-top: 0%;
   animation-iteration-count: infinite;
 }
 

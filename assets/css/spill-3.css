@@ -6,6 +6,7 @@ body {
 ****** Hidden wall in front of the mouth of the Seal ******
 ******   Intention is to let the item hit the box    ******
 ***********************************************************/
+
 .hidden-wall {
   width: 150px;
   height: 150px;
@@ -62,7 +63,6 @@ body {
 
 .item-obj {
   position: absolute;
-  margin: auto;
   margin-top: 20px;
   margin-left: 10px;
   top: 50%;

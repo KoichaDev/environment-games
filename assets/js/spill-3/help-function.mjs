@@ -1,10 +1,13 @@
 const loopAddElement = (arr, elementName, className) => {
-  arr.map(image => {
+  arr.forEach(image => {
     const element = document.createElement(elementName);
     element.className = className;
     element.src = image;
-    return element;
   });
+};
+
+const sleep = ms => {
+  return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 const isOverlapping = (e1, e2) => {
@@ -33,4 +36,4 @@ const isOverlapping = (e1, e2) => {
   }
 };
 
-export { loopAddElement, isOverlapping };
+export { loopAddElement, sleep, isOverlapping };

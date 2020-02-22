@@ -1,12 +1,6 @@
-import {
-  isOverlapping
-} from './help-function.mjs';
+import { loopAddElement, sleep, isOverlapping } from './help-function.mjs';
 
 document.addEventListener('DOMContentLoaded', e => {
-  const sealImage = [
-    './assets/img/spill-3/seal-open.png',
-    './assets/img/spill-3/seal-close.png'
-  ];
   const foodImg = [
     './assets/img/spill-3/blue-fish.png',
     './assets/img/spill-3/fat-fish.png'
@@ -35,10 +29,23 @@ document.addEventListener('DOMContentLoaded', e => {
   mixObjImg.sort(() => Math.random() - 0.5);
 
   // Object Items that is animated moving on the right
-  mixObjImg.map(img => {
+  /* mixObjImg.forEach(img => {
     const itemObj = document.querySelector('.item-obj');
+
+    //await sleep(3000);
     itemObj.appendChild(img);
-  });
+  }); */
+
+  (async () => {
+    const itemObj = document.querySelector('.item-obj');
+    for (let i = 0; i < mixObjImg.length; i++) {
+      await sleep(1000);
+
+      itemObj.appendChild(mixObjImg[i]);
+    }
+  })();
+
+  //Tutor();
 
   const images = document.querySelector('.images');
   const hiddenWall = document.querySelector('.hidden-wall');
@@ -51,6 +58,12 @@ document.addEventListener('DOMContentLoaded', e => {
 
   const foodItem = document.querySelectorAll('.food-item');
   const trashItem = document.querySelectorAll('.trash-item');
+
+  /* for (let i = 0; i < itemObjects.childNodes.length; i++) {
+    const childElement = itemObjects.childNodes[i];
+    console.log(childElement);
+  } */
+  // itemObjects.childNodes.for);
 
   for (const trashElements of trashItem) {
     // Checking if the element is overlapping all the time
@@ -68,15 +81,10 @@ document.addEventListener('DOMContentLoaded', e => {
         // Will restart the item object animation after 1 second
         setTimeout(() => {
           itemObjects.style.animationPlayState = 'running';
-          console.log(sealHappySad.firstElementChild);
           // Remove the src of the img
           sealSad.src = '';
           images.firstElementChild.classList.add('seal-open-close');
         }, 1000);
-      }
-
-      if (blankImage) {
-        // This will return true if there is no more display is none
       }
     }, 100);
 
@@ -101,7 +109,6 @@ document.addEventListener('DOMContentLoaded', e => {
   }
 
   for (const foodElements of foodItem) {
-
     // Checking if the element is overlapping all the time
     setInterval(() => {
       if (isOverlapping(foodElements, hiddenWall)) {
