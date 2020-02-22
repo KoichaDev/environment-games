@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', e => {
   const images = document.querySelector('.images');
   const hiddenWall = document.querySelector('.hidden-wall');
   const sealEatClose = document.querySelector('.seal-open-close');
+  const sealHappySad = document.querySelector('.seal-happy-sad');
   const sealSad = document.querySelector('.seal-sad');
   const itemObjects = document.querySelector('.item-obj');
 
@@ -60,14 +61,18 @@ document.addEventListener('DOMContentLoaded', e => {
         images.firstElementChild.classList.remove('seal-open-close');
 
         if (displayNone) {
-          sealSad.src = '/assets/img/spill-3/seal-trist.png';
+          sealSad.src = './assets/img/spill-3/seal-trist.png';
 
           itemObjects.style.animationPlayState = 'paused';
         }
-        setTimeout(
-          () => (itemObjects.style.animationPlayState = 'running'),
-          1000
-        );
+        // Will restart the item object animation after 1 second
+        setTimeout(() => {
+          itemObjects.style.animationPlayState = 'running';
+          console.log(sealHappySad.firstElementChild);
+          // Remove the src of the img
+          sealSad.src = '';
+          images.firstElementChild.classList.add('seal-open-close');
+        }, 1000);
       }
 
       if (blankImage) {
