@@ -1,48 +1,53 @@
 import { loopAddElement, sleep, isOverlapping } from './help-function.mjs';
 
+const obj = {
+  startSealAnimation: 300,
+  flag: false
+};
+
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
-    './assets/img/spill-3/blue-fish.png',
-    './assets/img/spill-3/fat-fish.png',
-    './assets/img/spill-3/eple.png',
-    './assets/img/spill-3/jordbær.png',
-    './assets/img/spill-3/squash.png',
-    './assets/img/spill-3/reke.png',
-    './assets/img/spill-3/salat.png',
-    './assets/img/spill-3/sharp-blue-fish.png',
-    './assets/img/spill-3/yellow-fish.png',
-    './assets/img/spill-3/ketchup.png',
-    './assets/img/spill-3/muggen-brød.png'
+    { img: './assets/img/spill-3/blue-fish.png', flag: false },
+    { img: './assets/img/spill-3/fat-fish.png', flag: false },
+    { img: './assets/img/spill-3/eple.png', flag: false },
+    { img: './assets/img/spill-3/jordbær.png', flag: false },
+    { img: './assets/img/spill-3/squash.png', flag: false },
+    { img: './assets/img/spill-3/reke.png', flag: false },
+    { img: './assets/img/spill-3/salat.png', flag: false },
+    { img: './assets/img/spill-3/sharp-blue-fish.png', flag: false },
+    { img: './assets/img/spill-3/yellow-fish.png', flag: false },
+    { img: './assets/img/spill-3/ketchup.png', flag: false },
+    { img: './assets/img/spill-3/muggen-brød.png', flag: false }
   ];
 
   const trashImg = [
-    './assets/img/spill-3/bread-box.png',
-    './assets/img/spill-3/soda-box.png',
-    './assets/img/spill-3/klokke.png',
-    './assets/img/spill-3/q-tips.png',
-    './assets/img/spill-3/tannbørste.png',
-    './assets/img/spill-3/skyr.png',
-    './assets/img/spill-3/brille.png',
-    './assets/img/spill-3/eple-flaske.png',
-    './assets/img/spill-3/kartong.png',
-    './assets/img/spill-3/krykke.png',
-    './assets/img/spill-3/tannbørste.png',
-    './assets/img/spill-3/tom-kartong.png',
-    './assets/img/spill-3/truse.png',
-    './assets/img/spill-3/sokker.png'
+    { img: './assets/img/spill-3/bread-box.png', flag: false },
+    { img: './assets/img/spill-3/soda-box.png', flag: false },
+    { img: './assets/img/spill-3/klokke.png', flag: false },
+    { img: './assets/img/spill-3/q-tips.png', flag: false },
+    { img: './assets/img/spill-3/tannbørste.png', flag: false },
+    { img: './assets/img/spill-3/skyr.png', flag: false },
+    { img: './assets/img/spill-3/brille.png', flag: false },
+    { img: './assets/img/spill-3/eple-flaske.png', flag: false },
+    { img: './assets/img/spill-3/kartong.png', flag: false },
+    { img: './assets/img/spill-3/krykke.png', flag: false },
+    { img: './assets/img/spill-3/tannbørste.png', flag: false },
+    { img: './assets/img/spill-3/tom-kartong.png', flag: false },
+    { img: './assets/img/spill-3/truse.png', flag: false },
+    { img: './assets/img/spill-3/sokker.png', flag: false }
   ];
 
   const foodElements = foodImg.map(image => {
     const element = document.createElement('img');
     element.className = 'food-item';
-    element.src = image;
+    element.src = image.img;
     return element;
   });
 
   const trashElements = trashImg.map(image => {
     const element = document.createElement('img');
     element.className = 'trash-item';
-    element.src = image;
+    element.src = image.img;
     return element;
   });
 
@@ -53,7 +58,6 @@ document.addEventListener('DOMContentLoaded', e => {
     const itemObj = document.querySelector('.item-obj');
     for (let i = 0; i < mixObjImg.length; i++) {
       await sleep(1000);
-      console.log(mixObjImg[i]);
 
       // Reversing the order of the item to "popping" on the screen
       itemObj.prepend(mixObjImg[i]);
@@ -71,6 +75,8 @@ document.addEventListener('DOMContentLoaded', e => {
       const trashItem = document.querySelectorAll('.trash-item');
 
       for (const trashElements of trashItem) {
+        trashElements.setAttribute('draggable', 'false');
+
         // Checking if the element is overlapping all the time
         setInterval(() => {
           if (isOverlapping(trashElements, hiddenWall)) {
@@ -103,6 +109,14 @@ document.addEventListener('DOMContentLoaded', e => {
 
           itemObjects.style.animationPlayState = 'paused';
 
+          for (const itemsElements of itemObj.childNodes) {
+            console.log((itemsElements.style.pointerEvents = 'none'));
+            setTimeout(
+              () => (itemsElements.style.pointerEvents = 'none'),
+              1000
+            );
+          }
+
           setTimeout(() => {
             sealHappy.src = '';
             itemObjects.style.animationPlayState = 'running';
@@ -112,6 +126,8 @@ document.addEventListener('DOMContentLoaded', e => {
           }, 1000);
         });
       }
+
+      // food Shit
 
       for (const foodElements of foodItem) {
         // Checking if the element is overlapping all the time
