@@ -3,6 +3,8 @@
  **************************/
 
 .seal-open-close {
+  width: 453px;
+  height: 322px;
   animation-name: wokka;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
@@ -11,11 +13,11 @@
 
 @keyframes wokka {
   0% {
-    content: url('/assets/img/spill-3/seal-open.png');
+    background: url('https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-open.png?raw=true');
   }
 
   50% {
-    content: url('/assets/img/spill-3/seal-lukket.png');
+    background: url('https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-lukket.png?raw=true');
   }
 }
 

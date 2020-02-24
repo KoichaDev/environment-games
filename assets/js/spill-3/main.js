@@ -7,7 +7,7 @@ const obj = {
 
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
-    /*   { img: './assets/img/spill-3/blue-fish.png', flag: true },
+    { img: './assets/img/spill-3/blue-fish.png', flag: true },
     { img: './assets/img/spill-3/fat-fish.png', flag: true },
     { img: './assets/img/spill-3/eple.png', flag: true },
     { img: './assets/img/spill-3/jordbær.png', flag: true },
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', e => {
     { img: './assets/img/spill-3/sharp-blue-fish.png', flag: true },
     { img: './assets/img/spill-3/yellow-fish.png', flag: true },
     { img: './assets/img/spill-3/ketchup.png', flag: true },
-    { img: './assets/img/spill-3/muggen-brød.png', flag: true } */
+    { img: './assets/img/spill-3/muggen-brød.png', flag: true }
   ];
 
   const trashImg = [
@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', e => {
     { img: './assets/img/spill-3/skyr.png', flag: true },
     { img: './assets/img/spill-3/brille.png', flag: true },
     { img: './assets/img/spill-3/eple-flaske.png', flag: true },
-    { img: './assets/img/spill-3/kartong.png', flag: true },
-    { img: './assets/img/spill-3/krykke.png', flag: true },
+    { img: './assets/img/spill-3/kkartong.png', flag: true },
+    { img: './assets/img/spill-3/kkrykke.png', flag: true },
     { img: './assets/img/spill-3/tannbørste.png', flag: true },
     { img: './assets/img/spill-3/tom-kartong.png', flag: true },
-    { img: './assets/img/spill-3/truse.png', flag: true },
-    { img: './assets/img/spill-3/sokker.png', flag: true }
+    { img: './assets/img/spill-3/ttruse.png', flag: true },
+    { img: './assets/img/spill-3/ssokker.png', flag: true }
   ];
 
   const foodElements = foodImg.map(image => {
@@ -118,9 +118,9 @@ document.addEventListener('DOMContentLoaded', e => {
           itemObjects.style.animationPlayState = 'paused';
 
           for (const itemsElements of itemObj.childNodes) {
-            console.log((itemsElements.style.pointerEvents = 'none'));
+            // console.log((itemsElements.style.pointerEvents = 'none'));
             setTimeout(() => {
-              itemsElements.style.pointerEvents = 'none';
+              //itemsElements.style.pointerEvents = 'none';
             }, 1000);
           }
 
