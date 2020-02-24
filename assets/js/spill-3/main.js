@@ -7,7 +7,7 @@ const obj = {
 
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
-    { img: './assets/img/spill-3/blue-fish.png', flag: true },
+    /* { img: './assets/img/spill-3/blue-fish.png', flag: true },
     { img: './assets/img/spill-3/fat-fish.png', flag: true },
     { img: './assets/img/spill-3/eple.png', flag: true },
     { img: './assets/img/spill-3/jordbær.png', flag: true },
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', e => {
     { img: './assets/img/spill-3/sharp-blue-fish.png', flag: true },
     { img: './assets/img/spill-3/yellow-fish.png', flag: true },
     { img: './assets/img/spill-3/ketchup.png', flag: true },
-    { img: './assets/img/spill-3/muggen-brød.png', flag: true }
+    { img: './assets/img/spill-3/muggen-brød.png', flag: true } */
   ];
 
   const trashImg = [
@@ -59,16 +59,52 @@ document.addEventListener('DOMContentLoaded', e => {
   (async () => {
     const itemObj = document.querySelector('.item-obj');
     for (let i = 0; i < mixObjImg.length; i++) {
-      await sleep(1000);
+      await sleep(2000);
 
       // Reversing the order of the item to "popping" on the screen
-
-      const imgDataAttribute = mixObjImg[i].getAttribute('data-display-img');
+      const getImgDataAttribute = mixObjImg[i].getAttribute('data-display-img');
       const prependImages = () => itemObj.prepend(mixObjImg[i]);
 
-      if (imgDataAttribute === 'true') {
+      if (getImgDataAttribute === 'true') {
         prependImages();
       }
+
+      // We want to add Event Listener on click based on the trash item, because we don't want it to display on the screen
+      // Think of it as a "delay" by not showing on the screen
+      mixObjImg[i].addEventListener('click', e => {
+        // Looping through the Trash Items
+        for (const trashItems of trashElements) {
+          // in
+          setTimeout(() => {
+            trashItems.style.pointerEvents = 'none';
+            trashItems.setAttribute('data-display-img', 'false');
+          }, 5000);
+
+          /*  setTimeout(() => {
+            trashItems.style.pointerEvents = '';
+            trashItems.setAttribute('data-display-img', 'true');
+          }, 10000); */
+
+          console.log(trashItems);
+        }
+
+        /* // Looping through the food Items
+        for (const foodItems of foodElements) {
+          // Here is where we delay
+          setTimeout(() => {
+            foodItems.style.pointerEvents = 'none';
+            foodItems.setAttribute('data-display-img', 'false');
+          }, 5000);
+
+          // After the Delay, we want to set it back to not delay anymore
+          setTimeout(() => {
+            foodItems.setAttribute('data-display-img', 'true');
+            foodItems.style.pointerEvents = '';
+          }, 2000);
+
+          console.log(foodItems);
+        } */
+      });
 
       const images = document.querySelector('.images');
       const hiddenWall = document.querySelector('.hidden-wall');
@@ -116,13 +152,6 @@ document.addEventListener('DOMContentLoaded', e => {
           sealHappy.src = './assets/img/spill-3/seal-glad.png';
 
           itemObjects.style.animationPlayState = 'paused';
-
-          for (const itemsElements of itemObj.childNodes) {
-            // console.log((itemsElements.style.pointerEvents = 'none'));
-            setTimeout(() => {
-              //itemsElements.style.pointerEvents = 'none';
-            }, 1000);
-          }
 
           setTimeout(() => {
             sealHappy.src = '';
