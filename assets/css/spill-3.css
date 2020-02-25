@@ -4,11 +4,16 @@ body {
   background-color: #f9f4e1 !important;
 }
 
+.back--btn:hover {
+  cursor: pointer;
+}
+
 span {
   font-family: 'Schoolbell',
     sans-serif;
 }
 
+h1,
 h4 {
   font-family: 'Schoolbell', sans-serif;
 }
