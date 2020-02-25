@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
           images.firstElementChild.classList.remove('seal-open-close');
 
+          sealSad.src = '';
           sealHappy.src = './assets/img/spill-3/seal-glad.png';
 
           itemObjects.style.animationPlayState = 'paused';
