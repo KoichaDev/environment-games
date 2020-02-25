@@ -1,9 +1,11 @@
 import { loopAddElement, sleep, isOverlapping } from './help-function.mjs';
 
-const obj = {
+const spillObj = {
   startSealAnimation: 300,
-  flag: false
+  trashScore: 0
 };
+
+let { trashScore } = spillObj;
 
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
@@ -59,10 +61,14 @@ document.addEventListener('DOMContentLoaded', e => {
   (async () => {
     const itemObj = document.querySelector('.item-obj');
     for (let i = 0; i < mixObjImg.length; i++) {
-      await sleep(2000);
+      document.getElementById('total-trash-score').innerHTML = mixObjImg.length;
+
+      // Getting the index positions of the array each 1 second at the time
+      await sleep(1000);
+
+      const getImgDataAttribute = mixObjImg[i].getAttribute('data-display-img');
 
       // Reversing the order of the item to "popping" on the screen
-      const getImgDataAttribute = mixObjImg[i].getAttribute('data-display-img');
       const prependImages = () => itemObj.prepend(mixObjImg[i]);
 
       if (getImgDataAttribute === 'true') {
@@ -72,29 +78,41 @@ document.addEventListener('DOMContentLoaded', e => {
       // We want to add Event Listener on click based on the trash item, because we don't want it to display on the screen
       // Think of it as a "delay" by not showing on the screen
       mixObjImg[i].addEventListener('click', e => {
-        // Looping through the Trash Items
-        for (const trashItems of trashElements) {
-          // in
-          setTimeout(() => {
-            trashItems.style.pointerEvents = 'none';
-            trashItems.setAttribute('data-display-img', 'false');
-          }, 5000);
+        trashScore = trashScore + 1;
+        const increment = (document.getElementById(
+          'trash-score'
+        ).innerHTML = trashScore);
 
-          /*  setTimeout(() => {
-            trashItems.style.pointerEvents = '';
-            trashItems.setAttribute('data-display-img', 'true');
-          }, 10000); */
-
-          console.log(trashItems);
+        if (increment <= 4) {
+          document.getElementById('trash-score').style.color = 'red';
+        } else if (increment >= 4) {
+          document.getElementById('trash-score').style.color = '#abab15';
+        }
+        if (increment >= 8) {
+          document.getElementById('trash-score').style.color = 'green';
         }
 
-        /* // Looping through the food Items
-        for (const foodItems of foodElements) {
+        // Looping through the Trash Items
+        for (const trashItems of trashElements) {
+          // Flagging all of the image false to not display in 1 second
+          setTimeout(() => {
+            // trashItems.style.pointerEvents = 'none';
+            trashItems.setAttribute('data-display-img', 'false');
+          }, 1000);
+          // Flagging back all of the image to display again by setting it 'true'
+          setTimeout(() => {
+            trashItems.style.pointerEvents = '';
+            trashItems.setAttribute('data-display-img', 'true');
+          }, 1500);
+        }
+
+        // Looping through the food Items
+        /* for (const foodItems of foodElements) {
           // Here is where we delay
           setTimeout(() => {
             foodItems.style.pointerEvents = 'none';
             foodItems.setAttribute('data-display-img', 'false');
-          }, 5000);
+          }, 1000);
 
           // After the Delay, we want to set it back to not delay anymore
           setTimeout(() => {
@@ -129,6 +147,9 @@ document.addEventListener('DOMContentLoaded', e => {
             images.firstElementChild.classList.remove('seal-open-close');
 
             if (displayNone) {
+              // Decrement the score if the item object is vanished
+              trashScore = trashScore - 1;
+              document.getElementById('trash-score').innerHTML = trashScore;
               sealSad.src = './assets/img/spill-3/seal-trist.png';
 
               itemObjects.style.animationPlayState = 'paused';
