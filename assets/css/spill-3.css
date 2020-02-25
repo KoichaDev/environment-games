@@ -1,5 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Schoolbell&display=swap');
+
 body {
   background-color: #f9f4e1 !important;
+}
+
+span {
+  font-family: 'Schoolbell',
+    sans-serif;
+}
+
+h4 {
+  font-family: 'Schoolbell', sans-serif;
+}
+
+.seal-bubble-speech {
+  width: 20rem;
+  height: 10rem;
+  bottom: 13%;
+  left: 60%;
+  position: relative;
+  background: #888888;
+  border-radius: 90px;
+}
+
+.seal-bubble-speech:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 47px solid transparent;
+  border-top-color: #888888;
+  border-bottom: 0;
+  border-left: 0;
+  margin-left: -23.5px;
+  margin-bottom: -47px;
 }
 
 /**********************************************************
@@ -14,8 +50,8 @@ body {
   margin: auto;
   margin-top: 20px;
   margin-left: 10px;
-  top: 33%;
-  left: 59%;
+  top: 53%;
+  left: 54%;
 }
 
 .images {
@@ -23,7 +59,7 @@ body {
   width: 31rem;
   height: auto;
   right: 1.8%;
-  top: 41.5%;
+  top: 56.5%;
   left: 40%;
 }
 
@@ -65,5 +101,5 @@ body {
   position: absolute;
   margin-top: 20px;
   margin-left: 10px;
-  top: 50%;
+  top: 60%;
 }

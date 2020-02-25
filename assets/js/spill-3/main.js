@@ -98,12 +98,12 @@ document.addEventListener('DOMContentLoaded', e => {
           setTimeout(() => {
             // trashItems.style.pointerEvents = 'none';
             trashItems.setAttribute('data-display-img', 'false');
-          }, 1000);
+          }, 1500);
           // Flagging back all of the image to display again by setting it 'true'
           setTimeout(() => {
             trashItems.style.pointerEvents = '';
             trashItems.setAttribute('data-display-img', 'true');
-          }, 1500);
+          }, 1600);
         }
 
         // Looping through the food Items
@@ -150,6 +150,8 @@ document.addEventListener('DOMContentLoaded', e => {
               // Decrement the score if the item object is vanished
               trashScore = trashScore - 1;
               document.getElementById('trash-score').innerHTML = trashScore;
+              document.getElementById('seal-speech').innerHTML =
+                '<h4>👿 Æsj! 👿 </h4>';
               sealSad.src = './assets/img/spill-3/seal-trist.png';
 
               itemObjects.style.animationPlayState = 'paused';
@@ -157,6 +159,8 @@ document.addEventListener('DOMContentLoaded', e => {
             // Will restart the item object animation after 1 second
             setTimeout(() => {
               itemObjects.style.animationPlayState = 'running';
+              document.getElementById('seal-speech').innerHTML =
+                '<h4> 😭😱Jeg er sulten! 😭😱</h4>';
               // Remove the src of the img
               sealSad.src = '';
               images.firstElementChild.classList.add('seal-open-close');
