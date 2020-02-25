@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', e => {
 
       const images = document.querySelector('.images');
       const hiddenWall = document.querySelector('.hidden-wall');
-      const sealHappySad = document.querySelector('.seal-happy-sad');
 
       const sealHappy = document.querySelector('.seal-happy');
       const sealSad = document.querySelector('.seal-sad');

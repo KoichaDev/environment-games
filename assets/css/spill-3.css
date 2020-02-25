@@ -21,7 +21,7 @@ h4 {
 .seal-bubble-speech {
   width: 20rem;
   height: 10rem;
-  bottom: 13%;
+  bottom: 18%;
   left: 60%;
   position: relative;
   background: #888888;
@@ -64,20 +64,11 @@ h4 {
   width: 31rem;
   height: auto;
   right: 1.8%;
-  top: 56.5%;
+  top: 55%;
   left: 40%;
 }
 
 .seal-open-close {
-  position: relative;
-  width: 31rem;
-  height: auto;
-  right: 1.8%;
-  top: 39%;
-  left: -5%;
-}
-
-.seal-sad {
   position: relative;
   width: 31rem;
   height: auto;
@@ -106,5 +97,5 @@ h4 {
   position: absolute;
   margin-top: 20px;
   margin-left: 10px;
-  top: 60%;
+  top: 55%;
 }
