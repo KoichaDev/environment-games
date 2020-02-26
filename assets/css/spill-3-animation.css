@@ -30,7 +30,7 @@
  ***** Item Object Animation *****
  *********************************/
 .item-obj {
-  animation: slide-slow 82s;
+  animation: slide-slow 52s;
   animation-iteration-count: 1;
 }
 
