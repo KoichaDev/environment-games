@@ -2,14 +2,26 @@ import { loopAddElement, sleep, isOverlapping } from './help-function.mjs';
 
 const spillObj = {
   startSealAnimation: 300,
-  trashScore: 0
+  trashScore: 0,
+  foodScore: 0
 };
 
-let { trashScore } = spillObj;
+let { trashScore, foodScore } = spillObj;
+
+const score = document.getElementById('score');
+
+if (score <= 8) {
+  document.getElementById('score').style.color = 'red';
+} else if (score >= 16) {
+  document.getElementById('score').style.color = '#abab15';
+}
+if (score >= 16) {
+  document.getElementById('score').style.color = 'green';
+}
 
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
-    /* { img: './assets/img/spill-3/blue-fish.png', flag: true },
+    { img: './assets/img/spill-3/blue-fish.png', flag: true },
     { img: './assets/img/spill-3/fat-fish.png', flag: true },
     { img: './assets/img/spill-3/eple.png', flag: true },
     { img: './assets/img/spill-3/jordbær.png', flag: true },
@@ -19,7 +31,7 @@ document.addEventListener('DOMContentLoaded', e => {
     { img: './assets/img/spill-3/sharp-blue-fish.png', flag: true },
     { img: './assets/img/spill-3/yellow-fish.png', flag: true },
     { img: './assets/img/spill-3/ketchup.png', flag: true },
-    { img: './assets/img/spill-3/muggen-brød.png', flag: true } */
+    { img: './assets/img/spill-3/muggen-brød.png', flag: true }
   ];
 
   const trashImg = [
@@ -79,20 +91,9 @@ document.addEventListener('DOMContentLoaded', e => {
       // Think of it as a "delay" by not showing on the screen
       mixObjImg[i].addEventListener('click', e => {
         trashScore = trashScore + 1;
-        const increment = (document.getElementById(
-          'trash-score'
-        ).innerHTML = trashScore);
+        document.getElementById('score').innerHTML = trashScore;
 
-        if (increment <= 4) {
-          document.getElementById('trash-score').style.color = 'red';
-        } else if (increment >= 4) {
-          document.getElementById('trash-score').style.color = '#abab15';
-        }
-        if (increment >= 8) {
-          document.getElementById('trash-score').style.color = 'green';
-        }
-
-        // Looping through the Trash Items
+        /*  // Looping through the Trash Items
         for (const trashItems of trashElements) {
           // Flagging all of the image false to not display in 1 second
           setTimeout(() => {
@@ -101,33 +102,32 @@ document.addEventListener('DOMContentLoaded', e => {
           }, 1500);
           // Flagging back all of the image to display again by setting it 'true'
           setTimeout(() => {
-            trashItems.style.pointerEvents = '';
+            // trashItems.style.pointerEvents = '';
             trashItems.setAttribute('data-display-img', 'true');
           }, 1600);
         }
 
         // Looping through the food Items
-        /* for (const foodItems of foodElements) {
+        for (const foodItems of foodElements) {
           // Here is where we delay
           setTimeout(() => {
             foodItems.style.pointerEvents = 'none';
             foodItems.setAttribute('data-display-img', 'false');
-          }, 1000);
+          }, 1500);
 
           // After the Delay, we want to set it back to not delay anymore
           setTimeout(() => {
             foodItems.setAttribute('data-display-img', 'true');
             foodItems.style.pointerEvents = '';
-          }, 2000);
-
-          console.log(foodItems);
+          }, 1600);
         } */
       });
 
       const images = document.querySelector('.images');
       const hiddenWall = document.querySelector('.hidden-wall');
 
-      const sealHappy = document.querySelector('.seal-happy');
+      const sealSpeech = document.getElementById('seal-speech');
+      const sealExpression = document.querySelector('.seal-expression');
       const sealSad = document.querySelector('.seal-sad');
 
       const itemObjects = document.querySelector('.item-obj');
@@ -148,9 +148,8 @@ document.addEventListener('DOMContentLoaded', e => {
             if (displayNone) {
               // Decrement the score if the item object is vanished
               trashScore = trashScore - 1;
-              document.getElementById('trash-score').innerHTML = trashScore;
-              document.getElementById('seal-speech').innerHTML =
-                '<h4>👿 Æsj! 👿 </h4>';
+              document.getElementById('score').innerHTML = trashScore;
+              sealSpeech.innerHTML = '<h4>👿 Æsj! 👿 </h4>';
 
               sealSad.src = './assets/img/spill-3/seal-trist.png';
 
@@ -159,8 +158,7 @@ document.addEventListener('DOMContentLoaded', e => {
             // Will restart the item object animation after 1 second
             setTimeout(() => {
               itemObjects.style.animationPlayState = 'running';
-              document.getElementById('seal-speech').innerHTML =
-                '<h4> 😭😱Jeg er sulten! 😭😱</h4>';
+              sealSpeech.innerHTML = '<h4> 😭😱Jeg er sulten! 😭😱</h4>';
               // Remove the src of the img
               sealSad.src = '';
               images.firstElementChild.classList.add('seal-open-close');
@@ -169,6 +167,8 @@ document.addEventListener('DOMContentLoaded', e => {
         }, 100);
 
         trashElements.addEventListener('click', e => {
+          sealSpeech.innerHTML = '<h4> 💖👼 Woohoo!! 👼💖 </h4>';
+
           // We want to use this variable as "flag"
           const sealSadImgSrc = (sealSad.src =
             './assets/img/spill-3/seal-trist.png');
@@ -178,7 +178,16 @@ document.addEventListener('DOMContentLoaded', e => {
           images.firstElementChild.classList.remove('seal-open-close');
 
           sealSad.src = '';
-          sealHappy.src = './assets/img/spill-3/seal-glad.png';
+          const sealHappy = (sealExpression.src =
+            './assets/img/spill-3/seal-glad.png');
+
+          if (sealHappy) {
+            setTimeout(
+              () =>
+                (sealSpeech.innerHTML = '<h4> 😭😱Jeg er sulten! 😭😱</h4>'),
+              1000
+            );
+          }
 
           // If the seal sad image is actiaved
           if (sealSadImgSrc) {
@@ -213,7 +222,7 @@ document.addEventListener('DOMContentLoaded', e => {
           itemObjects.style.animationPlayState = 'paused';
 
           setTimeout(() => {
-            sealHappy.src = '';
+            sealExpression.src = '';
             itemObjects.style.animationPlayState = 'running';
             // Remove the src of the img
             sealSad.src = '';
@@ -225,17 +234,105 @@ document.addEventListener('DOMContentLoaded', e => {
       // food Shit
 
       for (const foodElements of foodItem) {
+        foodElements.setAttribute('draggable', 'false');
+
         // Checking if the element is overlapping all the time
         setInterval(() => {
           if (isOverlapping(foodElements, hiddenWall)) {
             // remove the trash image objects
-            foodElements.style.display = 'none';
-            images.firstElementChild.classList.add('seal-open-close');
+            const displayNone = (foodElements.style.display = 'none');
+            images.firstElementChild.classList.remove('seal-open-close');
+
+            if (displayNone) {
+              // Increment the score if the item object is vanished
+              foodScore = foodScore + 1;
+              document.getElementById('score').innerHTML = foodScore;
+              sealSpeech.innerHTML = '<h4>❤️ YAYYYY!❤️ </h4>';
+
+              sealSad.src = './assets/img/spill-3/seal-happy-love.png';
+
+              itemObjects.style.animationPlayState = 'paused';
+            }
+            // Will restart the item object animation after 1 second
+            setTimeout(() => {
+              itemObjects.style.animationPlayState = 'running';
+              sealSpeech.innerHTML = '<h4> 😭😱Jeg er sulten! 😭😱</h4>';
+              // Remove the src of the img
+              sealSad.src = '';
+              images.firstElementChild.classList.add('seal-open-close');
+            }, 1000);
           }
         }, 100);
 
         foodElements.addEventListener('click', e => {
-          // Add heart that will move animation up
+          sealSpeech.innerHTML = '<h4> 💢😠 MAAATEN MIIINI!! 😠💢 </h4>';
+
+          // Decrement the score if the item object is vanished
+
+          foodScore = foodScore - 1;
+          document.getElementById('score').innerHTML = foodScore;
+
+          // We want to use this variable as "flag"
+          const sealSadImgSrc = (sealSad.src =
+            './assets/img/spill-3/seal-trist.png');
+          foodElements.classList.add('trash-item-flying-up');
+          setTimeout(() => {
+            e.target.style.display = 'none';
+          }, 300);
+
+          images.firstElementChild.classList.remove('seal-open-close');
+
+          sealSad.src = '';
+          const sealAngry = (sealExpression.src =
+            './assets/img/spill-3/seal-angry.png');
+
+          if (sealAngry) {
+            setTimeout(
+              () =>
+                (sealSpeech.innerHTML = '<h4> 😭😱Jeg er sulten! 😭😱</h4>'),
+              1000
+            );
+          }
+
+          // If the seal sad image is actiaved
+          if (sealSadImgSrc) {
+            // We turn off the image
+            sealSad.src = '';
+
+            // Then we timing it by removing the seal eating/closing it's mouth in 1ms
+            setTimeout(() => {
+              document.documentElement.style.setProperty(
+                '--seal-open-mouth-img',
+                'transparent'
+              );
+              document.documentElement.style.setProperty(
+                '--seal-close-mouth-img',
+                'transparent'
+              );
+            }, 1);
+
+            // We turn it back on again after 1 second
+            setTimeout(() => {
+              document.documentElement.style.setProperty(
+                '--seal-open-mouth-img',
+                'url(https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-open.png?raw=true)'
+              );
+              document.documentElement.style.setProperty(
+                '--seal-close-mouth-img',
+                'url(https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-lukket.png?raw=true)'
+              );
+            }, 1000);
+          }
+
+          itemObjects.style.animationPlayState = 'paused';
+
+          setTimeout(() => {
+            sealExpression.src = '';
+            itemObjects.style.animationPlayState = 'running';
+            // Remove the src of the img
+            sealSad.src = '';
+            images.firstElementChild.classList.add('seal-open-close');
+          }, 1000);
         });
       }
     }
