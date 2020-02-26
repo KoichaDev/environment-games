@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', e => {
               document.getElementById('trash-score').innerHTML = trashScore;
               document.getElementById('seal-speech').innerHTML =
                 '<h4>👿 Æsj! 👿 </h4>';
+
               sealSad.src = './assets/img/spill-3/seal-trist.png';
 
               itemObjects.style.animationPlayState = 'paused';
@@ -168,6 +169,9 @@ document.addEventListener('DOMContentLoaded', e => {
         }, 100);
 
         trashElements.addEventListener('click', e => {
+          // We want to use this variable as "flag"
+          const sealSadImgSrc = (sealSad.src =
+            './assets/img/spill-3/seal-trist.png');
           trashElements.classList.add('trash-item-flying-up');
           setTimeout(() => (e.target.style.display = 'none'), 300);
 
@@ -175,6 +179,36 @@ document.addEventListener('DOMContentLoaded', e => {
 
           sealSad.src = '';
           sealHappy.src = './assets/img/spill-3/seal-glad.png';
+
+          // If the seal sad image is actiaved
+          if (sealSadImgSrc) {
+            // We turn off the image
+            sealSad.src = '';
+
+            // Then we timing it by removing the seal eating/closing it's mouth in 1ms
+            setTimeout(() => {
+              document.documentElement.style.setProperty(
+                '--seal-open-mouth-img',
+                'transparent'
+              );
+              document.documentElement.style.setProperty(
+                '--seal-close-mouth-img',
+                'transparent'
+              );
+            }, 1);
+
+            // We turn it back on again after 1 second
+            setTimeout(() => {
+              document.documentElement.style.setProperty(
+                '--seal-open-mouth-img',
+                'url(https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-open.png?raw=true)'
+              );
+              document.documentElement.style.setProperty(
+                '--seal-close-mouth-img',
+                'url(https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-lukket.png?raw=true)'
+              );
+            }, 1000);
+          }
 
           itemObjects.style.animationPlayState = 'paused';
 

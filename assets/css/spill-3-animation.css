@@ -1,3 +1,8 @@
+:root {
+  --seal-open-mouth-img: url('https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-open.png?raw=true');
+  --seal-close-mouth-img: url('https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-lukket.png?raw=true');
+}
+
 /**************************
  ***** Seal Animation *****
  **************************/
@@ -13,11 +18,11 @@
 
 @keyframes wokka {
   0% {
-    background: url('https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-open.png?raw=true');
+    background: var(--seal-open-mouth-img);
   }
 
   50% {
-    background: url('https://github.com/KoichaDev/environment-games/blob/master/assets/img/spill-3/seal-lukket.png?raw=true');
+    background: var(--seal-close-mouth-img);
   }
 }
 
