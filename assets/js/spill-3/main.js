@@ -2,12 +2,9 @@ import { loopAddElement, sleep, isOverlapping } from './help-function.mjs';
 
 const spillObj = {
   startSealAnimation: 300,
-  scoreUpdate: 0
+  foodScore: 0,
+  trashScore: 0
 };
-
-let { scoreUpdate } = spillObj;
-
-const score = document.getElementById('score');
 
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
@@ -41,14 +38,10 @@ document.addEventListener('DOMContentLoaded', e => {
     { img: './assets/img/spill-3/ssokker.png', flag: true }
   ];
 
-  if (score <= 8) {
-    document.getElementById('score').style.color = 'red';
-  } else if (score >= 16) {
-    document.getElementById('score').style.color = '#abab15';
-  }
-  if (score >= 16) {
-    document.getElementById('score').style.color = 'green';
-  }
+  const foodScore = document.getElementById('food-score');
+  document.getElementById('total-food-score').innerHTML = foodImg.length;
+
+  document.getElementById('total-trash-score').innerHTML = trashImg.length;
 
   const foodElements = foodImg.map(image => {
     const element = document.createElement('img');
@@ -66,16 +59,52 @@ document.addEventListener('DOMContentLoaded', e => {
     return element;
   });
 
+  // Event Listener for click when updating the food Score number
+  foodElements.map(foodItems => {
+    foodItems.addEventListener('click', () => {
+      // Decrement the score if the item object is vanished
+      const foodScore = (spillObj.foodScore = spillObj.foodScore - 1);
+      document.getElementById('food-score').innerHTML = foodScore;
+    });
+  });
+  setInterval(() => {
+    const foodScoreUpdate = parseInt(foodScore.innerText);
+    if (foodScoreUpdate <= 3) {
+      document.getElementById('food-score').style.color = 'red';
+    } else if (foodScoreUpdate >= 6) {
+      document.getElementById('food-score').style.color = '#abab15';
+    }
+    if (foodScoreUpdate >= 6) {
+      document.getElementById('food-score').style.color = 'green';
+    }
+  }, 1);
+
+  // Event Listener for click for updating the trash Score numbers
+  trashElements.map(trashItems => {
+    trashItems.addEventListener('click', () => {
+      spillObj.trashScore = spillObj.trashScore + 1;
+      const trashScore = (document.getElementById('trash-score').innerHTML =
+        spillObj.trashScore);
+
+      if (trashScore <= 4) {
+        document.getElementById('trash-score').style.color = 'red';
+      } else if (trashScore > 4) {
+        document.getElementById('trash-score').style.color = '#abab15';
+      }
+      if (trashScore >= 8) {
+        document.getElementById('trash-score').style.color = 'green';
+      }
+    });
+  });
+
   const mixObjImg = [...foodElements, ...trashElements];
   mixObjImg.sort(() => Math.random() - 0.5);
 
   (async () => {
     const itemObj = document.querySelector('.item-obj');
     for (let i = 0; i < mixObjImg.length; i++) {
-      document.getElementById('total-trash-score').innerHTML = mixObjImg.length;
-
       // Getting the index positions of the array each 1 second at the time
-      await sleep(1000);
+      await sleep(900);
 
       const getImgDataAttribute = mixObjImg[i].getAttribute('data-display-img');
 
@@ -88,11 +117,11 @@ document.addEventListener('DOMContentLoaded', e => {
 
       // We want to add Event Listener on click based on the trash item, because we don't want it to display on the screen
       // Think of it as a "delay" by not showing on the screen
-      mixObjImg[i].addEventListener('click', e => {
+      /* mixObjImg[i].addEventListener('click', e => {
         scoreUpdate = scoreUpdate + 1;
         document.getElementById('score').innerHTML = scoreUpdate;
 
-        /*  // Looping through the Trash Items
+          // Looping through the Trash Items
         for (const trashItems of trashElements) {
           // Flagging all of the image false to not display in 1 second
           setTimeout(() => {
@@ -119,8 +148,8 @@ document.addEventListener('DOMContentLoaded', e => {
             foodItems.setAttribute('data-display-img', 'true');
             foodItems.style.pointerEvents = '';
           }, 1600);
-        } */
-      });
+        } 
+      }); */
 
       const images = document.querySelector('.images');
       const hiddenWall = document.querySelector('.hidden-wall');
@@ -146,8 +175,9 @@ document.addEventListener('DOMContentLoaded', e => {
 
             if (displayNone) {
               // Decrement the score if the item object is vanished
-              scoreUpdate = scoreUpdate - 1;
-              document.getElementById('score').innerHTML = scoreUpdate;
+              spillObj.trashScore = spillObj.trashScore - 1;
+              document.getElementById('trash-score').innerHTML =
+                spillObj.trashScore;
               sealSpeech.innerHTML = '<h4>👿 Æsj! 👿 </h4>';
 
               sealSad.src = './assets/img/spill-3/seal-trist.png';
@@ -230,8 +260,6 @@ document.addEventListener('DOMContentLoaded', e => {
         });
       }
 
-      // food Shit
-
       for (const foodElements of foodItem) {
         foodElements.setAttribute('draggable', 'false');
 
@@ -244,8 +272,9 @@ document.addEventListener('DOMContentLoaded', e => {
 
             if (displayNone) {
               // Increment the score if the item object is vanished
-              scoreUpdate = scoreUpdate + 1;
-              document.getElementById('score').innerHTML = scoreUpdate;
+              spillObj.foodScore = spillObj.foodScore + 1;
+              document.getElementById('food-score').innerHTML =
+                spillObj.foodScore;
               sealSpeech.innerHTML = '<h4>❤️ YAYYYY!❤️ </h4>';
 
               sealSad.src = './assets/img/spill-3/seal-happy-love.png';
@@ -265,11 +294,6 @@ document.addEventListener('DOMContentLoaded', e => {
 
         foodElements.addEventListener('click', e => {
           sealSpeech.innerHTML = '<h4> 💢😠 MAAATEN MIIINI!! 😠💢 </h4>';
-
-          // Decrement the score if the item object is vanished
-
-          spillObj.scoreUpdate = spillObj.scoreUpdate - 1;
-          document.getElementById('score').innerHTML = spillObj.scoreUpdate;
 
           // We want to use this variable as "flag"
           const sealSadImgSrc = (sealSad.src =
@@ -337,3 +361,4 @@ document.addEventListener('DOMContentLoaded', e => {
     }
   })();
 });
+// 26 seconds
