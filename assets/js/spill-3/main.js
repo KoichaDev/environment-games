@@ -2,22 +2,12 @@ import { loopAddElement, sleep, isOverlapping } from './help-function.mjs';
 
 const spillObj = {
   startSealAnimation: 300,
-  trashScore: 0,
-  foodScore: 0
+  scoreUpdate: 0
 };
 
-let { trashScore, foodScore } = spillObj;
+let { scoreUpdate } = spillObj;
 
 const score = document.getElementById('score');
-
-if (score <= 8) {
-  document.getElementById('score').style.color = 'red';
-} else if (score >= 16) {
-  document.getElementById('score').style.color = '#abab15';
-}
-if (score >= 16) {
-  document.getElementById('score').style.color = 'green';
-}
 
 document.addEventListener('DOMContentLoaded', e => {
   const foodImg = [
@@ -50,6 +40,15 @@ document.addEventListener('DOMContentLoaded', e => {
     { img: './assets/img/spill-3/ttruse.png', flag: true },
     { img: './assets/img/spill-3/ssokker.png', flag: true }
   ];
+
+  if (score <= 8) {
+    document.getElementById('score').style.color = 'red';
+  } else if (score >= 16) {
+    document.getElementById('score').style.color = '#abab15';
+  }
+  if (score >= 16) {
+    document.getElementById('score').style.color = 'green';
+  }
 
   const foodElements = foodImg.map(image => {
     const element = document.createElement('img');
@@ -90,8 +89,8 @@ document.addEventListener('DOMContentLoaded', e => {
       // We want to add Event Listener on click based on the trash item, because we don't want it to display on the screen
       // Think of it as a "delay" by not showing on the screen
       mixObjImg[i].addEventListener('click', e => {
-        trashScore = trashScore + 1;
-        document.getElementById('score').innerHTML = trashScore;
+        scoreUpdate = scoreUpdate + 1;
+        document.getElementById('score').innerHTML = scoreUpdate;
 
         /*  // Looping through the Trash Items
         for (const trashItems of trashElements) {
@@ -147,8 +146,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
             if (displayNone) {
               // Decrement the score if the item object is vanished
-              trashScore = trashScore - 1;
-              document.getElementById('score').innerHTML = trashScore;
+              scoreUpdate = scoreUpdate - 1;
+              document.getElementById('score').innerHTML = scoreUpdate;
               sealSpeech.innerHTML = '<h4>👿 Æsj! 👿 </h4>';
 
               sealSad.src = './assets/img/spill-3/seal-trist.png';
@@ -245,8 +244,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
             if (displayNone) {
               // Increment the score if the item object is vanished
-              foodScore = foodScore + 1;
-              document.getElementById('score').innerHTML = foodScore;
+              scoreUpdate = scoreUpdate + 1;
+              document.getElementById('score').innerHTML = scoreUpdate;
               sealSpeech.innerHTML = '<h4>❤️ YAYYYY!❤️ </h4>';
 
               sealSad.src = './assets/img/spill-3/seal-happy-love.png';
@@ -269,8 +268,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
           // Decrement the score if the item object is vanished
 
-          foodScore = foodScore - 1;
-          document.getElementById('score').innerHTML = foodScore;
+          spillObj.scoreUpdate = spillObj.scoreUpdate - 1;
+          document.getElementById('score').innerHTML = spillObj.scoreUpdate;
 
           // We want to use this variable as "flag"
           const sealSadImgSrc = (sealSad.src =
