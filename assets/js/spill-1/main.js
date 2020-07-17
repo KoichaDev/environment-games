@@ -4,7 +4,7 @@ import {
   dragOver,
   dragLeave,
   drop,
-  dragEnd
+  dragEnd,
 } from './drag-n-drop-functions.mjs';
 
 const draggable = document.querySelectorAll('.draggable');
@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-window.testA = function() {
-  document.querySelector('.testB').style.display = 'none';
-  document.querySelector('.testA').style.display = 'block';
-};
-
-window.testB = function() {
+window.testA = function () {
   document.querySelector('.testB').style.display = 'block';
   document.querySelector('.testA').style.display = 'none';
+};
+
+window.testB = function () {
+  document.querySelector('.testB').style.display = 'none';
+  document.querySelector('.testA').style.display = 'block';
 };
